@@ -2,7 +2,7 @@ export async function timezoneAdjust(lat, lon, milliseconds) {
   try {
     let res = await fetch(
       encodeURI(
-        `http://api.timezonedb.com/v2.1/get-time-zone?key=${process.env.VUE_APP_TIMEZONEDB_API_KEY}&format=json&by=position&lat=${lat}&lng=${lon}`
+        `https://api.timezonedb.com/v2.1/get-time-zone?key=${process.env.VUE_APP_TIMEZONEDB_API_KEY}&format=json&by=position&lat=${lat}&lng=${lon}`
       )
     );
 
