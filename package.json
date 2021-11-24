@@ -1,0 +1,30 @@
+{
+  "name": "cumulus",
+  "version": "1.0.0",
+  "description": "A minimalistic weather app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node backend/index.js",
+    "dev": "nodemon backend/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dsilvaevje99/cumulus.git"
+  },
+  "author": "Daniel Silva",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dsilvaevje99/cumulus/issues"
+  },
+  "homepage": "https://github.com/dsilvaevje99/cumulus#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongodb": "^4.2.0",
+    "mongoose": "^6.0.13"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
