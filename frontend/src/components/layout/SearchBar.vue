@@ -12,7 +12,7 @@
       :class="{
         favLocStyles: type === 'favoriteLocations',
         favLocPopupStyles: type === 'favoriteLocationsPopup',
-        squareBottomCorners: results !== null,
+        squareBottomCorners: results !== null || awaitingSearch,
       }"
     />
     <base-icon
@@ -20,10 +20,7 @@
       class="icon"
       v-if="type !== 'favoriteLocations' && type !== 'favoriteLocationsPopup'"
     ></base-icon>
-    <div
-      class="resultsContainer place-result-popup-container"
-      v-if="gotResults"
-    >
+    <div class="resultsContainer place-result-popup-container" v-if="showPopup">
       <div
         class="resultItem"
         v-for="result in results"
@@ -35,12 +32,12 @@
       >
         {{ result.city }}<span class="greyText">, {{ result.country }}</span>
       </div>
-    </div>
-    <div
-      v-if="gotResults === false"
-      class="resultsContainer place-result-popup-container noResults"
-    >
-      Fant ingen resultater...
+      <div v-if="awaitingSearch" class="loadingSpinnerContainer">
+        <loading-spinner></loading-spinner>
+      </div>
+      <div v-if="gotResults === false" class="noResults">
+        Fant ingen resultater...
+      </div>
     </div>
   </div>
 </template>
@@ -59,8 +56,11 @@ export default {
     };
   },
   computed: {
+    showPopup() {
+      return Array.isArray(this.results) || this.awaitingSearch;
+    },
     gotResults() {
-      if (this.results !== null) {
+      if (this.results !== null && !this.awaitingSearch) {
         if (this.results.length === 0) {
           return false;
         } else {
@@ -72,7 +72,13 @@ export default {
     },
   },
   watch: {
-    searchQuery() {
+    searchQuery(newVal) {
+      if (newVal.trim() === "") {
+        this.results = null;
+        this.awaitingSearch = false;
+        return;
+      }
+
       if (!this.awaitingSearch) {
         setTimeout(() => {
           this.fetchResults(this.searchQuery.trim());
@@ -94,7 +100,6 @@ export default {
     clearInputField(timer) {
       // @blur event needs timeout to give $emit time to send value to parent
       setTimeout(() => {
-        console.log("Clearing input field");
         this.results = null;
         this.searchQuery = "";
       }, timer);
@@ -227,7 +232,7 @@ input:focus {
 }
 
 .noResults {
-  padding: 1rem 1rem;
+  padding: 0.5rem 1rem;
   color: var(--grey-text-light);
 }
 
