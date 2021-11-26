@@ -1,8 +1,8 @@
 # Cumulus
 
-Cumulus is an minimalistic weather app built in Vue JS, currently intended for primary use from users located in Oslo, Norway (as this is the standard location for the app). It fetches location data from a custom MongoDB database containing records on over 41 000 cities worldwide and timezone data from [TimezoneDB](https://timezonedb.com), as well as weather data from [Yr's Locationforecast 2.0](https://developer.yr.no/doc/locationforecast/HowTO/).
+Cumulus is an minimalistic weather app built for fun in Vue JS, currently intended for personal use only. It fetches location data from a custom MongoDB database containing records on over 41 000 cities worldwide and timezone data from [TimezoneDB](https://timezonedb.com), as well as weather data from [Yr's Locationforecast 2.0](https://developer.yr.no/doc/locationforecast/HowTO/).
 
-The BETA version is live on: https://cumulus-weather.herokuapp.com
+The app is live on: https://cumulus-weather.herokuapp.com
 
 ## Project setup
 
