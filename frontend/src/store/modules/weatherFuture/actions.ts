@@ -1,5 +1,5 @@
 export default {
-  setForecast(context, payload) {
+  setForecast(context: any, payload: any) {
     context.commit("setForecast", payload);
   },
 };

@@ -49,20 +49,17 @@ export default {
     saturate(348%) hue-rotate(84deg) brightness(101%) contrast(86%);
   --cumulus-green: #35d662;
 }
-
 * {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-
 body {
   padding: 0;
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   background-color: var(--bg-color-primary);
 }
-
 .buttonMain {
   border-radius: 0;
   background-color: var(--bg-color-tertiary);
@@ -73,41 +70,7 @@ body {
   cursor: pointer;
   transition: 0.25s all ease;
 }
-
 .buttonMain:hover {
   background-color: var(--bg-color-secondary);
 }
-
-/* Google place results styling */
-/* .pac-container {
-  background-color: var(--bg-color-tertiary);
-  color: var(--text-color-primary);
-  border: 0;
-}
-
-.pac-container::after {
-  content: none;
-}
-
-.pac-item {
-  border: 0;
-  cursor: pointer;
-  padding: 0.2rem 1rem;
-}
-
-.pac-item:hover {
-  background-color: var(--bg-color-secondary);
-}
-
-.pac-item > span {
-  color: var(--text-color-primary);
-}
-
-.pac-item > span:nth-child(3) {
-  opacity: 0.5;
-}
-
-.pac-icon {
-  display: none;
-} */
 </style>

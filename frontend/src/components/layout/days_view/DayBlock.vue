@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { timezoneAdjust } from "../../../helpers/timezone.js";
+import { timezoneAdjust } from "../../../helpers/timezone.ts";
 
 export default {
   props: ["color", "data"],

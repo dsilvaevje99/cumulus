@@ -1,5 +1,5 @@
 export default {
-  getForecastNextFourDays(state) {
+  getForecastNextFourDays(state: any) {
     return state.forecastNextFourDays;
   },
 };

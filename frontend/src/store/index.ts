@@ -1,8 +1,8 @@
 import { createStore } from "vuex";
 
-import favoriteModule from "./modules/favoriteLocations/index.js";
-import futureModule from "./modules/weatherFuture/index.js";
-import todayModule from "./modules/weatherToday/index.js";
+import favoriteModule from "./modules/favoriteLocations/index";
+import futureModule from "./modules/weatherFuture/index";
+import todayModule from "./modules/weatherToday/index";
 
 const store = createStore({
   modules: {

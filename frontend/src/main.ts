@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
-import store from "./store/index.js";
+import store from "./store/index";
 
 import BaseIcon from "./components/ui/BaseIcon.vue";
 import LoadingSpinner from "./components/ui/LoadingSpinner.vue";

@@ -1,5 +1,5 @@
 export default {
-  async getWeather({ commit, state }) {
+  async getWeather({ commit, state }: any) {
     let location = state.chosenLocation;
     if (!location) {
       //Set Oslo as location by default if no other place is chosen
@@ -22,7 +22,7 @@ export default {
 
     commit("setForecast", resData);
   },
-  setLocation(context, payload) {
+  setLocation(context: any, payload: any) {
     context.commit("setChosenLocation", payload);
   },
 };

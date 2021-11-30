@@ -1,13 +1,17 @@
-export async function timezoneAdjust(lat, lon, milliseconds) {
+export async function timezoneAdjust(
+  lat: number,
+  lon: number,
+  milliseconds: number
+) {
   try {
-    let res = await fetch(
+    const res = await fetch(
       encodeURI(
         `https://api.timezonedb.com/v2.1/get-time-zone?key=${process.env.VUE_APP_TIMEZONEDB_API_KEY}&format=json&by=position&lat=${lat}&lng=${lon}`
       )
     );
 
     if (res.ok) {
-      let data = await res.json();
+      const data = await res.json();
       const timestamp = milliseconds / 1000;
       const currentTimezoneOffset = new Date().getTimezoneOffset();
       // newTimestamp = original timestamp plus TimezoneDB's offset in seconds plus current timezone
@@ -15,7 +19,7 @@ export async function timezoneAdjust(lat, lon, milliseconds) {
       const newTimestamp = new Date(
         (timestamp + data.gmtOffset + currentTimezoneOffset * 60) * 1000
       );
-      if (!isNaN(newTimestamp)) {
+      if (newTimestamp instanceof Date) {
         return newTimestamp.getHours();
       } else {
         console.log(data, newTimestamp);

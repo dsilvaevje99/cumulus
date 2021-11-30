@@ -39,11 +39,90 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { ref, computed, watch } from "vue";
+import { useStore } from "vuex";
+import { Forecast, Temps } from "../../../../types";
 import ComingHoursPopup from "../mobile_alternatives/ComingHoursPopup.vue";
 
 export default {
   components: { ComingHoursPopup },
+  setup() {
+    const store: any = useStore();
+    const location: any = ref("Oslo");
+    const icon: any = ref("cloud");
+    const temp: any = ref();
+    const summary: any = ref();
+    const low: any = ref();
+    const high: any = ref();
+    const forecast: any = ref([]);
+    const showComingHoursPopup: any = ref(false);
+    const chosenLocation: any = computed(
+      () => store.getters["today/chosenLocation"]
+    );
+
+    const togglePopup = () => {
+      showComingHoursPopup.value = !showComingHoursPopup.value;
+    };
+
+    const loadForecast = async (): Promise<void> => {
+      try {
+        await store.dispatch("today/getWeather");
+
+        const newForecast: Forecast = store.getters["today/forecast"];
+        const temps: Temps = store.getters["today/highAndLow"];
+        const timeseries: Array<any> = newForecast.properties.timeseries;
+        const today: Number = new Date().getDate();
+
+        const todaysForecast: Array<any> = [];
+
+        timeseries.forEach((timeserie): void => {
+          if (new Date(timeserie.time).getDate() === today) {
+            todaysForecast.push(timeserie);
+          }
+        });
+
+        if (chosenLocation.value) {
+          location.value = chosenLocation.value.location;
+        }
+        temp.value = Math.round(
+          todaysForecast[0].data.instant.details.air_temperature
+        );
+        icon.value = todaysForecast[0].data.next_1_hours.summary.symbol_code;
+        summary.value = store.getters["today/summary"];
+        low.value = temps.lowest;
+        high.value = temps.highest;
+        forecast.value = todaysForecast;
+      } catch (e) {
+        console.error(e);
+      }
+    };
+    watch(chosenLocation, () => loadForecast());
+    //On component created
+    loadForecast();
+
+    const dayOrNight = computed(() => {
+      return summary.value === "sol"
+        ? "i dag"
+        : icon.value.substr(-5) === "night"
+        ? "i natt"
+        : "";
+    });
+
+    return {
+      location,
+      icon,
+      temp,
+      summary,
+      low,
+      high,
+      forecast,
+      showComingHoursPopup,
+      togglePopup,
+      dayOrNight,
+    };
+  },
+  /* components: { ComingHoursPopup },
   data() {
     return {
       location: "Oslo",
@@ -112,7 +191,7 @@ export default {
   },
   async created() {
     this.loadForecast();
-  },
+  }, */
 };
 </script>
 

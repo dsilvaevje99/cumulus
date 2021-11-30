@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 
 const baseUrl = "api/place/";
 
@@ -98,8 +98,8 @@ const baseUrl = "api/place/";
   return response;
 }; */
 
-export const searchForCity = async (searchQuery) => {
-  let request = {
+export const searchForCity = async (searchQuery: String) => {
+  const request: AxiosRequestConfig<any> = {
     url: baseUrl + "search/" + searchQuery,
     method: "get",
     headers: {

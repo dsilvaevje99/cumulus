@@ -21,7 +21,7 @@
 <script>
 import ToolBar from "../components/layout/ToolBar.vue";
 import DayBlock from "../components/layout/days_view/DayBlock.vue";
-import { getSummary, getHighestAndLowest } from "../helpers/weather.js";
+import { getSummary, getHighestAndLowest } from "../helpers/weather.ts";
 
 export default {
   components: { ToolBar, DayBlock },

@@ -1,4 +1,4 @@
-export function getSummary(keyword) {
+export function getSummary(keyword: string) {
   if (
     keyword === "cloudy" ||
     keyword === "partlycloudy_day" ||
@@ -59,12 +59,12 @@ export function getSummary(keyword) {
   }
 }
 
-export function getHighestAndLowest(timeseries) {
+export function getHighestAndLowest(timeseries: Array<any>) {
   let lowest = 100;
   let highest = -100;
 
   timeseries.forEach((timeserie) => {
-    var temp = timeserie.data.instant.details.air_temperature;
+    const temp = timeserie.data.instant.details.air_temperature;
     if (temp < lowest) {
       lowest = Math.round(temp);
     }

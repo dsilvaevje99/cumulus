@@ -1,5 +1,5 @@
 export default {
-  setForecast(state, payload) {
+  setForecast(state: any, payload: any) {
     state.forecastNextFourDays = payload;
   },
 };

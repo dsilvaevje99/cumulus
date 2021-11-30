@@ -1,5 +1,5 @@
 export default {
-  locations(state) {
+  locations(state: any) {
     return state.locations;
   },
 };

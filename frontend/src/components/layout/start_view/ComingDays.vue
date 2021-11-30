@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { getSummary } from "../../../helpers/weather.js";
+import { getSummary } from "../../../helpers/weather.ts";
 
 export default {
   data() {
